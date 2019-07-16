@@ -25,16 +25,32 @@ function Client(name) {
 
 Client.prototype = Object.create(EventEmitter.prototype);
 
-var client = new Client('Vasya');
-client.on('makeOrder', function(name) {
+function getRandomPizza() {
+	Client.apply(this, arguments);
 	var pizzaMenu = [
 	'Margherita',
 	'Marinara',
 	'Frutti di Mare',
 	'Carbonara'
 	];
+	var getRndPizza = Math.floor(Math.random()*pizzaMenu.length);
+	this.randomPizza = pizzaMenu[getRndPizza];
+	console.log('Client ' + this.name + ' made an order on ' + randomPizza + ' pizza.');
+};
 
-	var getRandomPizza = Math.floor(Math.random()*pizzaMenu.length);
-	return (console.log('Client ' + name + ' made an order on ' + pizzaMenu[getRandomPizza] + ' pizza. Please wait'));
+var client = new Client('Vasya');
+
+client.on('makeOrder', getRandomPizza);
+client.emit('makeOrder', client.name);
+
+client.on('giveOrder', function() {
+	console.log('Your order is processing');
+	var coockingOrder = new EventEmitter();
+	coockingOrder.on('coockingPizza', function() {
+		console.log('Pizza ' + this.randomPizza + ' will be coocked soon');
+	});
+	coockingOrder.emit('coockingPizza', 'Margherita');
 });
-client.emit('makeOrder', 'Vasya');
+
+client.on('orderEvent');
+client.emit('giveOrder');
