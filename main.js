@@ -25,8 +25,17 @@ function Client(name) {
 
 Client.prototype = Object.create(EventEmitter.prototype);
 
-function getRandomPizza() {
-	Client.apply(this, arguments);
+Client.prototype.getRandomName = function() {
+	var clientsNames = [
+			'Vasya',
+			'Petya',
+			'Kolya'
+		];
+		var getRandomClientName = Math.floor(Math.random()*clientsNames.length);
+		return randomName = clientsNames[getRandomClientName];
+};
+
+Client.prototype.getRandomPizza = function() {
 	var pizzaMenu = [
 	'Margherita',
 	'Marinara',
@@ -34,23 +43,27 @@ function getRandomPizza() {
 	'Carbonara'
 	];
 	var getRndPizza = Math.floor(Math.random()*pizzaMenu.length);
-	this.randomPizza = pizzaMenu[getRndPizza];
-	console.log('Client ' + this.name + ' made an order on ' + randomPizza + ' pizza.');
+	return randomPizza = pizzaMenu[getRndPizza];
 };
 
-var client = new Client('Vasya');
+Client.prototype.createClients = function(time=1000) {
+	setTimeout(function() {
 
-client.on('makeOrder', getRandomPizza);
-client.emit('makeOrder', client.name);
+		var client = new Client();
+		let randomPizza = client.getRandomPizza();
+		
+		client.on('makeAnOrder', function makeClient() {
+			console.log('Hello ' + client.getRandomName() + ' . Your order is ' + randomPizza);
+		});
+		client.emit('makeAnOrder');
+		client.on('getCoockedOrder', function() {
+			setTimeout(function() {
+				console.log('Your order ' + randomPizza + ' is coocked!');
+			}, 4000);
+		})
+		client.emit('getCoockedOrder');
+}, time);
+};
 
-client.on('giveOrder', function() {
-	console.log('Your order is processing');
-	var coockingOrder = new EventEmitter();
-	coockingOrder.on('coockingPizza', function() {
-		console.log('Pizza ' + this.randomPizza + ' will be coocked soon');
-	});
-	coockingOrder.emit('coockingPizza', 'Margherita');
-});
-
-client.on('orderEvent');
-client.emit('giveOrder');
+var client = new Client();
+client.createClients(2000);
