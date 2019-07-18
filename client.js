@@ -11,13 +11,19 @@ Client.prototype.getRandomName = function() {
 	var clientsNames = [
 			'Vasya',
 			'Petya',
-			'Kolya'
+			'Kolya',
+			'Misha',
+			'Roma'
 		];
 		var getRandomClientName = Math.floor(Math.random()*clientsNames.length);
 		return randomName = clientsNames[getRandomClientName];
 };
 
-Client.prototype.getRandomPizza = function() {
+function Menu() {};
+
+Menu.prototype = Object.create(Client.prototype);
+
+Menu.prototype.getRandomPizza = function() {
 	var pizzaMenu = [
 	'Margherita',
 	'Marinara',
@@ -32,16 +38,17 @@ Client.prototype.createClients = function(time=1000) {
 	setTimeout(function() {
 
 		var client = new Client();
-		let randomPizza = client.getRandomPizza();
-		let randomname = client.getRandomName();
+		let menu = new Menu();
+		let randomPizza = Menu.prototype.getRandomPizza();
+		let randomName = client.getRandomName();
 		
 		client.on('makeAnOrder', function makeClient() {
-			console.log('Hello ' + randomname + ' . Your order is ' + randomPizza);
+			console.log('Hello ' + randomName + ' . Your order is ' + randomPizza);
 		});
 		client.emit('makeAnOrder');
 		client.on('getCoockedOrder', function() {
 			setTimeout(function() {
-				console.log('Client ' + randomname + '. ' + 'Your order ' + randomPizza + ' is coocked!');
+				console.log('Client ' + randomName + '. ' + 'Your order ' + randomPizza + ' is coocked!');
 			}, 4000);
 		})
 		client.emit('getCoockedOrder');
