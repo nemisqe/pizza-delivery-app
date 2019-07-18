@@ -1,22 +1,51 @@
-// var EventEmitter = require('./ee.js');
+var EventEmitter = require('./ee.js');
 
-// function CreateClient() {
-// 	let clientId = 0;
-// 	this.getClients = setInterval(function() {
-// 		var clientName = [
-// 		'Vasya',
-// 		'Kolya',
-// 		'Petya',
-// 		'Roma',
-// 		'Andrei'
-// 		];
+function Client(name) {
+	EventEmitter.apply(this, arguments);
+	this.name =  name;
+};
 
-// 		var randomName = Math.floor(Math.random()*clientName.length);
+Client.prototype = Object.create(EventEmitter.prototype);
 
-// 		console.log(clientName[randomName] + '----- ' + (++clientId));
-// 	}, 1000);
-// };
+Client.prototype.getRandomName = function() {
+	var clientsNames = [
+			'Vasya',
+			'Petya',
+			'Kolya'
+		];
+		var getRandomClientName = Math.floor(Math.random()*clientsNames.length);
+		return randomName = clientsNames[getRandomClientName];
+};
 
-// var client = new CreateClient();
-// var client2 = new CreateClient();
-// client.getClients;
+Client.prototype.getRandomPizza = function() {
+	var pizzaMenu = [
+	'Margherita',
+	'Marinara',
+	'Frutti di Mare',
+	'Carbonara'
+	];
+	var getRndPizza = Math.floor(Math.random()*pizzaMenu.length);
+	return randomPizza = pizzaMenu[getRndPizza];
+};
+
+Client.prototype.createClients = function(time=1000) {
+	setTimeout(function() {
+
+		var client = new Client();
+		let randomPizza = client.getRandomPizza();
+		let randomname = client.getRandomName();
+		
+		client.on('makeAnOrder', function makeClient() {
+			console.log('Hello ' + randomname + ' . Your order is ' + randomPizza);
+		});
+		client.emit('makeAnOrder');
+		client.on('getCoockedOrder', function() {
+			setTimeout(function() {
+				console.log('Client ' + randomname + '. ' + 'Your order ' + randomPizza + ' is coocked!');
+			}, 4000);
+		})
+		client.emit('getCoockedOrder');
+	}, time);
+};
+
+module.exports = Client;

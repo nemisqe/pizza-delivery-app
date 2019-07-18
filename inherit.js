@@ -10,34 +10,34 @@
 //     return f;
 // };
 
-function inherit(BaseClass, proto) {
-    const { constructor, ...prototype } = proto;
-    function childConstructor() {
-        BaseClass.apply(this, arguments);
-        constructor.apply(this, arguments);
-    }
+// function inherit(BaseClass, proto) {
+//     const { constructor, ...prototype } = proto;
+//     function childConstructor() {
+//         BaseClass.apply(this, arguments);
+//         constructor.apply(this, arguments);
+//     }
 
-    childConstructor.prototype = Object.create(BaseClass.prototype);
-    childConstructor.prototype.constructor = constructor;
+//     childConstructor.prototype = Object.create(BaseClass.prototype);
+//     childConstructor.prototype.constructor = constructor;
 
-    for (let method in prototype) {
-        childConstructor.prototype[method] = prototype[method];
-    }
+//     for (let method in prototype) {
+//         childConstructor.prototype[method] = prototype[method];
+//     }
 
-    return childConstructor;
-};
+//     return childConstructor;
+// };
 
-function Animal() {
+// function Animal() {
 
-};
+// };
 
-Animal.prototype.sayHello = function() {
-	console.log('Hello!');
-};
+// Animal.prototype.sayHello = function() {
+// 	console.log('Hello!');
+// };
 
-function Rabbit() {};
+// function Rabbit() {};
 
-inherit(Animal, Rabbit);
+// inherit(Animal, Rabbit);
 
-var rabbit = new Rabbit();
-rabbit.sayHello;
+// var rabbit = new Rabbit();
+// rabbit.sayHello;
