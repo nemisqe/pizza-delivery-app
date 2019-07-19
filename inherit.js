@@ -1,43 +1,30 @@
-// function inherit(parent, child) {
-//     var f = function() { 
-//         parent.apply(this, arguments);
-//         child.apply(this, arguments);
-//     };
-//     f.__proto__ = parent;
-//     Object.keys(child).forEach(function _copy(key) {
-//         f[key] = child[key];
-//     });
-//     return f;
-// };
+function inherit(parent, child) {
+    var f = function() { 
+        parent.apply(this, arguments);
+        child.apply(this, arguments);
+    };
+    f.__proto__ = parent;
+    Object.keys(child).forEach(function _copy(key) {
+        f[key] = child[key];
+    });
+    return f;
+};
 
-// function inherit(BaseClass, proto) {
-//     const { constructor, ...prototype } = proto;
-//     function childConstructor() {
-//         BaseClass.apply(this, arguments);
-//         constructor.apply(this, arguments);
-//     }
+function inherit(BaseClass, proto) {
+    const { constructor, ...prototype } = proto;
+    function childConstructor() {
+        BaseClass.apply(this, arguments);
+        constructor.apply(this, arguments);
+    }
 
-//     childConstructor.prototype = Object.create(BaseClass.prototype);
-//     childConstructor.prototype.constructor = constructor;
+    childConstructor.prototype = Object.create(BaseClass.prototype);
+    childConstructor.prototype.constructor = constructor;
 
-//     for (let method in prototype) {
-//         childConstructor.prototype[method] = prototype[method];
-//     }
+    for (let method in prototype) {
+        childConstructor.prototype[method] = prototype[method];
+    }
 
-//     return childConstructor;
-// };
+    return childConstructor;
+};
 
-// function Animal() {
-
-// };
-
-// Animal.prototype.sayHello = function() {
-// 	console.log('Hello!');
-// };
-
-// function Rabbit() {};
-
-// inherit(Animal, Rabbit);
-
-// var rabbit = new Rabbit();
-// rabbit.sayHello;
+module.exports = inherit;

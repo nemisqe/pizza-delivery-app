@@ -1,6 +1,7 @@
 var EventEmitter = require('./ee.js');
 var Client = require('./client.js');
 var Menu = require('./menu.js');
+var inherit = require('./inherit.js');
 
 
 

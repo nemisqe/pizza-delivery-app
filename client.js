@@ -1,14 +1,13 @@
-var EventEmitter = require('./ee.js');
-var Menu = require('./menu.js');
+const EventEmitter = require('./ee.js');
+const Menu = require('./menu.js');
+const inherit = require('./inherit.js');
 
-function Client(name) {
-	EventEmitter.apply(this, arguments);
-	this.name =  name;
-};
-
-Client.prototype = Object.create(EventEmitter.prototype);
-
-Client.prototype.getRandomName = function() {
+const Client = inherit(EventEmitter, {
+	constructor: function(name) {
+		EventEmitter.apply(this, arguments);
+		this.name =  name;
+	},
+	getRandomName: function() {
 	var clientsNames = [
 			'Vasya',
 			'Petya',
@@ -20,11 +19,10 @@ Client.prototype.getRandomName = function() {
 		];
 		var getRandomClientName = Math.floor(Math.random()*clientsNames.length);
 		return randomName = clientsNames[getRandomClientName];
-};
+},
+		createClients: function(time=1000) {
 
-Client.prototype.createClients = function(time=1000) {
-
-	let orders = [];
+		let orders = [];
 
 		let client = new Client();
 		let menu = new Menu();
@@ -60,6 +58,7 @@ Client.prototype.createClients = function(time=1000) {
 		})
 		client.emit('getCoockedOrder');
 	}, time);
-};
+}
+});
 
 module.exports = Client;
