@@ -1,12 +1,19 @@
 var EventEmitter = require('./ee.js');
-var Client = require('./client.js');
+const Client = require('./client.js');
 var Menu = require('./menu.js');
 var inherit = require('./inherit.js');
+const Chief = require('./chief.js');
 
 
+let client = new Client();
 
-var client = new Client();
-client.createClients();
+function makeClients() {
+	client.createClients();
+};
 
-var client2 = new Client();
-client2.createClients();
+for(var i = 0; i < 4; i++) {
+	setTimeout(makeClients, 3000);
+};
+
+let chief = new Chief();
+chief.getCookedOrder();

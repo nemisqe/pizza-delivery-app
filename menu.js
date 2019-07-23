@@ -1,11 +1,9 @@
-var Client = require('./client.js');
-var EventEmitter = require('./ee.js');
+const Client = require('./client.js');
+const EventEmitter = require('./ee.js');
+const inherit = require('./inherit.js');
 
-function Menu() {};
-
-Menu.prototype = Object.create(Client);
-
-Menu.prototype.getRandomPizza = function() {
+const Menu = inherit(EventEmitter, {
+	getRandomPizza: function() {
 	var pizzaMenu = [
 	'Margherita',
 	'Marinara',
@@ -13,12 +11,10 @@ Menu.prototype.getRandomPizza = function() {
 	'Carbonara',
 	'ШКОЛЬНАЯ'
 	];
-	var getRndPizza = Math.floor(Math.random()*pizzaMenu.length);
-	return randomPizza = pizzaMenu[getRndPizza];
-};
+	var getRndPizza = Math.floor(Math.random()* pizzaMenu.length);
 
-function Chief() {
-	EventEmitter.apply(this, arguments);
-};
+	return randomPizza = pizzaMenu[getRndPizza];
+	}
+});
 
 module.exports = Menu;

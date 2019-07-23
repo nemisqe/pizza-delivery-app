@@ -14,7 +14,7 @@ EventEmitter.prototype.emit = function(event, properties) {
     if(someEvent) {
       someEvent.forEach(function(listener){
         listener(properties)
-      });
+      }); 
   };
 };
 
