@@ -4,15 +4,23 @@ const client = require('./client.js');
 const orders = require('./client.js');
 
 const Chief = inherit(EventEmitter, {
-	getCookedOrder: function() {
-		setTimeout(function() {
-			var id = orders.orders.map(x => x.orderId)
-			while(id[0]) {
-				console.log('current id is ' + id[0]);
-				id.shift();
-			}; 
-		}, 4000);	
-}
-});
+	getCookedOrder: () => {
+
+		let arrId = orders.orders.map(f => f.orderId);
+
+		let showCookedOrders = (index) => {
+			if(arrId.length > index) {
+				
+				setTimeout(() => {
+					console.log('current id is ' + arrId[index]);
+					showCookedOrders(++index);
+
+				}, 2000);
+			}
+		};
+
+		showCookedOrders(0);
+		}
+	});
 
 module.exports = Chief;

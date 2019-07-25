@@ -6,11 +6,11 @@ let _counter = 0;
 let orders = [];
 
 const Client = inherit(EventEmitter, {
-	constructor: function(name) {
+	constructor: (name) => {
 		EventEmitter.apply(this, arguments);
 		this.name =  name;
 	},
-	getRandomName: function() {
+	getRandomName: () => {
 	const CLIENT_NAMES = [
 			'Vasya',
 			'Petya',
@@ -23,7 +23,7 @@ const Client = inherit(EventEmitter, {
 		let getRandomClientName = Math.floor(Math.random()*CLIENT_NAMES.length);
 		return randomName = CLIENT_NAMES[getRandomClientName];
 },
-	createClients: function(time) {
+	createClients: () => {
 
 		let client = new Client();
 		let randomPizza = Menu.prototype.getRandomPizza();
@@ -34,17 +34,19 @@ const Client = inherit(EventEmitter, {
 		clientOrder: randomPizza,
 		clientName: randomName
 		};
-		
-	setTimeout(function() {
-		client.on('makeOrder', function makeClient() {
+
+		client.on('makeOrder', () => {
 		
 			orders.push(clientInfo);	
 			module.exports.orders = orders;
+			
 			console.log('Hello ' + clientInfo.clientName + ' . Your order is ' + clientInfo.clientOrder + ' .id - ' + clientInfo.orderId);
 		});
 		client.emit('makeOrder');
-	}, time);
+
 }
 });
 
 module.exports = Client;
+
+module.exports.SELF = this;
