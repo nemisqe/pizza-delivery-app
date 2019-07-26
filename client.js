@@ -9,6 +9,8 @@ const Client = inherit(EventEmitter, {
 	constructor: (name) => {
 		EventEmitter.apply(this, arguments);
 		this.name =  name;
+		this.orders = orders;
+
 	},
 	getRandomName: () => {
 	const CLIENT_NAMES = [
@@ -20,6 +22,7 @@ const Client = inherit(EventEmitter, {
 			'Mike',
 			'Daniel'
 		];
+
 		let getRandomClientName = Math.floor(Math.random()*CLIENT_NAMES.length);
 		return randomName = CLIENT_NAMES[getRandomClientName];
 },
@@ -36,17 +39,15 @@ const Client = inherit(EventEmitter, {
 		};
 
 		client.on('makeOrder', () => {
-		
-			orders.push(clientInfo);	
-			module.exports.orders = orders;
-			
+
+			orders.push(clientInfo);
+
 			console.log('Hello ' + clientInfo.clientName + ' . Your order is ' + clientInfo.clientOrder + ' .id - ' + clientInfo.orderId);
 		});
-		client.emit('makeOrder');
 
+			client.emit('makeOrder');
+        	module.exports.orders = orders;
 }
 });
 
 module.exports = Client;
-
-module.exports.SELF = this;
