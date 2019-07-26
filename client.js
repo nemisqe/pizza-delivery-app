@@ -6,12 +6,6 @@ let _counter = 0;
 let orders = [];
 
 const Client = inherit(EventEmitter, {
-	constructor: (name) => {
-		EventEmitter.apply(this, arguments);
-		this.name =  name;
-		this.orders = orders;
-
-	},
 	getRandomName: () => {
 	const CLIENT_NAMES = [
 			'Vasya',
