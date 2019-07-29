@@ -32,12 +32,18 @@ const Client = inherit(EventEmitter, {
 		clientName: randomName
 		};
 
-		client.on('makeOrder', () => {
+        client.on('makeOrder', () => {
 
-			orders.push(clientInfo);
+            let showClientsInfo = document.querySelectorAll('.clients-list__item');
 
-			console.log('Hello ' + clientInfo.clientName + ' . Your order is ' + clientInfo.clientOrder + ' .id - ' + clientInfo.orderId);
-		});
+            for (i = 0; i < showClientsInfo.length; i++) {
+            	showClientsInfo[i].innerHTML = ('Hello ' + clientInfo.clientName + '. '
+                    + 'Your order is '
+                    + clientInfo.clientOrder
+                    + '. ' + 'Id is '
+                    + clientInfo.orderId);
+			}
+        });
 
 			client.emit('makeOrder');
         	module.exports.orders = orders;
@@ -45,3 +51,12 @@ const Client = inherit(EventEmitter, {
 });
 
 module.exports = Client;
+
+
+
+// let showClientsInfo = document.querySelectorAll('.clients-list__item');
+// innerHTML = ('Hello ' + clientInfo.clientName + '. '
+//     + 'Your order is '
+//     + clientInfo.clientOrder
+//     + '. ' + 'Id is '
+//     + clientInfo.orderId);

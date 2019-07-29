@@ -1,5 +1,7 @@
 const Client = require('./client.js');
 const Chief = require('./chief.js');
+const style = require('./css/style.css');
+const UI = require('./UI.js');
 
 let client = new Client();
 
