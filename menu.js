@@ -4,7 +4,8 @@ const inherit = require('./inherit.js');
 
 const Menu = inherit(EventEmitter, {
 	getRandomPizza: function() {
-	var pizzaMenu = [
+
+	let pizzaMenu = [
 	'Margherita',
 	'Marinara',
 	'Frutti di Mare',
@@ -12,7 +13,8 @@ const Menu = inherit(EventEmitter, {
 	'ШКОЛЬНАЯ',
 	'Эхо войны'
 	];
-	var getRndPizza = Math.floor(Math.random()* pizzaMenu.length);
+
+	let getRndPizza = Math.floor(Math.random()* pizzaMenu.length);
 
 	return randomPizza = pizzaMenu[getRndPizza];
 	}
