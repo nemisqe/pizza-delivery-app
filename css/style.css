@@ -3,18 +3,34 @@
     height: 600px;
     margin: 0 auto;
     border: 2px solid black;
+    display: flex;
+    justify-content: left;
 }
 
 .clients {
     width: 300px;
     height: 400px;
     border: 2px solid blue;
-    margin-left: 120px;
+    margin-left: 100px;
     margin-top: 120px;
 }
 
 .clients-list {
     width: 200px;
     height: 350px;
-    overflow: scroll;
+    overflow-y: scroll;
+}
+
+.chiefs {
+    width: 300px;
+    height: 400px;
+    border: 2px solid blue;
+    margin-top: 120px;
+    margin-left: 100px;
+}
+
+.chiefs-list {
+    width: 200px;
+    height: 350px;
+    overflow-y: scroll;
 }

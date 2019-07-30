@@ -34,15 +34,21 @@ const Client = inherit(EventEmitter, {
 
         client.on('makeOrder', () => {
 
-            let showClientsInfo = document.querySelectorAll('.clients-list__item');
+            orders.push(clientInfo);
 
-            for (i = 0; i < showClientsInfo.length; i++) {
-            	showClientsInfo[i].innerHTML = ('Hello ' + clientInfo.clientName + '. '
-                    + 'Your order is '
-                    + clientInfo.clientOrder
-                    + '. ' + 'Id is '
-                    + clientInfo.orderId);
-			}
+            let clientsItem = document.querySelectorAll('.clients-list__item');
+
+                for (let i = 0; i < clientsItem.length; i++) {
+                    function showClientsInfo () {
+                        clientsItem[i].innerHTML = ('Hello ' + clientInfo.clientName + '. '
+                            + 'Your order is '
+                            + clientInfo.clientOrder
+                            + '. ' + 'Id is '
+                            + clientInfo.orderId);
+					}
+                }
+
+            	showClientsInfo();
         });
 
 			client.emit('makeOrder');
@@ -60,3 +66,13 @@ module.exports = Client;
 //     + clientInfo.clientOrder
 //     + '. ' + 'Id is '
 //     + clientInfo.orderId);
+
+
+
+// for (let i = 0; i < showClientsInfo.length; i++) {
+//     showClientsInfo[i].innerHTML = ('Hello ' + clientInfo.clientName + '. '
+//         + 'Your order is '
+//         + clientInfo.clientOrder
+//         + '. ' + 'Id is '
+//         + clientInfo.orderId);
+// }

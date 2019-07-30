@@ -9,7 +9,8 @@ const Menu = inherit(EventEmitter, {
 	'Marinara',
 	'Frutti di Mare',
 	'Carbonara',
-	'ШКОЛЬНАЯ'
+	'ШКОЛЬНАЯ',
+	'Эхо войны'
 	];
 	var getRndPizza = Math.floor(Math.random()* pizzaMenu.length);
 

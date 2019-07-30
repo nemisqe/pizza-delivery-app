@@ -7,20 +7,32 @@ const Chief = inherit(EventEmitter, {
 	getCookedOrder: () => {
 
 	    let arrId = orders.orders.map(x => x.orderId);
+        let chiefItems = document.querySelectorAll('.chiefs-list__item');
 
-        let showCookedOrders = () => {
-            if (arrId.length !== 0) {
-                (function() {
-                    console.log('Order ' + arrId[0] + ' is cooked!');
-                    orders.orders.shift();
-                })();
+        for (let i = 0; i < chiefItems.length; i++) {
+            function showCookedOrders () {
+                chiefItems[i].innerHTML = ('Order ' + arrId[0] + ' is cooked!');
+                orders.orders.shift();
             }
-
-        };
+        }
 
         showCookedOrders();
-    }
 
+    }
 });
 
 module.exports = Chief;
+
+
+
+// let showCookedOrders = () => {
+//     if (arrId.length !== 0) {
+//         (function() {
+//             chiefItems.innerHTML = ('Order ' + arrId[0] + ' is cooked!');
+//             orders.orders.shift();
+//         })();
+//     }
+//
+// };
+//
+// showCookedOrders();
