@@ -4,9 +4,9 @@ const orders = require('./client.js');
 
 const Chief = inherit(EventEmitter, {
 
-	getCookedOrder: () => {
+    getCookedOrder: () => {
 
-	    let arrId = orders.orders.map(x => x.orderId);
+        let arrId = orders.orders.map(x => x.orderId);
         let chiefItems = document.querySelectorAll('.chiefs-list__item');
 
         for (let i = 0; i < chiefItems.length; i++) {
@@ -14,6 +14,7 @@ const Chief = inherit(EventEmitter, {
                 chiefItems[i].innerHTML = ('Order ' + arrId[0] + ' is cooked!');
                 orders.orders.shift();
             }
+
         }
 
         showCookedOrders();

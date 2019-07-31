@@ -14,7 +14,8 @@ const Client = inherit(EventEmitter, {
 			'Misha',
 			'Roma',
 			'Mike',
-			'Daniel'
+			'Daniel',
+			'Zac'
 		];
 
 		let getRandomClientName = Math.floor(Math.random()*CLIENT_NAMES.length);
@@ -27,9 +28,10 @@ const Client = inherit(EventEmitter, {
 		let randomName = client.getRandomName();
 
 		let clientInfo = {
-		orderId: ++_counter,
-		clientOrder: randomPizza,
-		clientName: randomName
+			orderId: ++_counter,
+			clientOrder: randomPizza.pizza,
+			clientName: randomName,
+			waitingTime: randomPizza.cookingTime
 		};
 
         client.on('makeOrder', () => {
@@ -43,8 +45,8 @@ const Client = inherit(EventEmitter, {
                         clientsItem[i].innerHTML = ('Hello ' + clientInfo.clientName + '. '
                             + 'Your order is '
                             + clientInfo.clientOrder
-                            + '. ' + 'Id is '
-                            + clientInfo.orderId);
+                            + '. ' + 'Id is ' + clientInfo.orderId + '. ' + 'Please wait '
+							 + clientInfo.waitingTime + ' sec.');
 					}
                 }
 

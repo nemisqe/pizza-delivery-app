@@ -1,4 +1,5 @@
 let wrapper = document.querySelector('.wrapper');
+const orders = require('./client.js');
 
 /////////////////CLIENTS BLOCK////////////////////////
 
@@ -21,6 +22,8 @@ setInterval(() => {
 let chiefs = document.createElement('div');
 chiefs.className = 'chiefs';
 wrapper.appendChild(chiefs);
+
+
 
 let chiefsList = document.createElement('ul');
 chiefsList.className = 'chiefs-list';
