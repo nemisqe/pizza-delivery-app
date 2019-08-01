@@ -54,12 +54,12 @@ const Client = inherit(EventEmitter, {
         });
 
 			client.emit('makeOrder');
-        	module.exports.orders = orders;
+
 }
 });
 
 module.exports = Client;
-
+module.exports.orders = orders;
 
 
 // let showClientsInfo = document.querySelectorAll('.clients-list__item');

@@ -26,8 +26,8 @@ const Menu = inherit(EventEmitter, {
 			cookingTime: 6
 		},
 		{
-			pizza: 'Эхо войны',
-			cookingTime: 30
+			pizza: 'Crudo',
+			cookingTime: 20
 		}
 	];
 

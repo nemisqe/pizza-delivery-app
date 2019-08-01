@@ -1,5 +1,6 @@
 let wrapper = document.querySelector('.wrapper');
-const orders = require('./client.js');
+const orders = require('./client');
+const Chief = require('./chief');
 
 /////////////////CLIENTS BLOCK////////////////////////
 
@@ -29,11 +30,19 @@ let chiefsList = document.createElement('ul');
 chiefsList.className = 'chiefs-list';
 chiefs.appendChild(chiefsList);
 
-setInterval(() => {
-    let chiefsListItem = document.createElement('li');
-    chiefsListItem.className = 'chiefs-list__item';
-    chiefsList.appendChild(chiefsListItem);
-}, 5000);
+let chiefCounter = 1;
+
+
+function addChief () {
+    setInterval(() => {
+        let chiefsListItem = document.createElement('li');
+        chiefsListItem.className = 'chiefs-list__item';
+        chiefsList.appendChild(chiefsListItem);
+    }, 5000);
+}
+
+addChief();
+
 
 //////////////////TITLES////////////////////////
 
@@ -46,3 +55,30 @@ let clientsTitle = document.createElement('h3');
 clientsTitle.className = 'clients-title';
 clientsTitle.textContent = 'Clients list';
 wrapper.appendChild(clientsTitle);
+
+
+
+//////////////////////
+
+
+let addChiefButton = document.createElement('button');
+addChiefButton.className = 'add-chief';
+addChiefButton.textContent = 'ADD CHIEF';
+chiefs.appendChild(addChiefButton);
+
+
+console.log(orders.orders);
+
+addChiefButton.addEventListener('click', () => {
+
+    addChief();
+
+    ++chiefCounter;
+
+    let chiefId = document.createElement('h4');
+    chiefId.textContent = ('Chief number ' + chiefCounter + ' was added!');
+    chiefsList.appendChild(chiefId);
+
+    let chief2 = new Chief();
+    setInterval(() => chief2.getCookedOrder(), 5000)
+});

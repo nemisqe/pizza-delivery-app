@@ -1,6 +1,6 @@
 function EventEmitter() {
   this.cb = {};
-};
+}
 
 EventEmitter.prototype.on = function(eventName, listener) {
     if(!this.cb[eventName]) {
@@ -15,8 +15,7 @@ EventEmitter.prototype.emit = function(event, properties) {
       someEvent.forEach(function(listener){
         listener(properties)
       }); 
-  };
+  }
 };
-
 
 module.exports = EventEmitter;
